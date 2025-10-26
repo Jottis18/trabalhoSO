@@ -1,211 +1,70 @@
-# Simulador de Escalonamento de Processos
+# Getting Started with Create React App
 
-Um simulador interativo de algoritmos de escalonamento de processos desenvolvido para a disciplina de Sistemas Operacionais da UFC.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## 🚀 Funcionalidades
+## Available Scripts
 
-- **Interface Web Moderna**: Frontend React com design responsivo e intuitivo
-- **Múltiplos Algoritmos**: Suporte a 7 algoritmos de escalonamento diferentes
-- **Visualização Interativa**: Diagramas de tempo em tempo real
-- **Análise de Performance**: Métricas detalhadas de turnaround time, waiting time e trocas de contexto
-- **Configuração Flexível**: Parâmetros personalizáveis para Round Robin e algoritmos com envelhecimento
+In the project directory, you can run:
 
-## 📋 Algoritmos Suportados
+### `npm start`
 
-1. **FCFS** - First-Come First-Served
-2. **SJF** - Shortest Job First (Não-Preemptivo)
-3. **SRTF** - Shortest Remaining Time First (Preemptivo)
-4. **PriorityNP** - Priority Non-Preemptive
-5. **PriorityP** - Priority Preemptive
-6. **RoundRobin** - Round Robin com quantum configurável
-7. **RoundRobinPriorityAging** - Round Robin com prioridade e envelhecimento
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## 🛠️ Tecnologias Utilizadas
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-### Frontend
-- **React 18** - Framework JavaScript
-- **Lucide React** - Ícones modernos
-- **CSS3** - Estilos responsivos e modernos
+### `npm test`
 
-### Backend
-- **Python 3** - Linguagem principal
-- **Flask** - Framework web para API
-- **Flask-CORS** - Suporte a CORS para comunicação frontend-backend
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## 🚀 Deploy na Vercel
+### `npm run build`
 
-### Pré-requisitos para Deploy
-- Conta na [Vercel](https://vercel.com)
-- Projeto no GitHub
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Passos para Deploy
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-1. **Faça push do projeto para o GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
-   git push -u origin main
-   ```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-2. **Conecte o repositório na Vercel**
-   - Acesse [vercel.com](https://vercel.com)
-   - Clique em "New Project"
-   - Importe seu repositório do GitHub
-   - A Vercel detectará automaticamente as configurações
+### `npm run eject`
 
-3. **Configurações automáticas**
-   - O arquivo `vercel.json` já está configurado
-   - O frontend React será buildado automaticamente
-   - A API Python será deployada como serverless function
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-4. **Variáveis de ambiente (se necessário)**
-   - Na dashboard da Vercel, vá em Settings > Environment Variables
-   - Adicione variáveis se necessário
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Estrutura para Deploy
-```
-projetoSO/
-├── api/
-│   └── index.py          # Entry point para Vercel
-├── scheduler-frontend/    # Frontend React
-├── api_server.py          # Backend Python
-├── vercel.json           # Configuração Vercel
-├── requirements.txt      # Dependências Python
-└── README.md
-```
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-## 📦 Instalação e Execução
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-### Pré-requisitos
-- Python 3.7+
-- Node.js 16+
-- npm ou yarn
+## Learn More
 
-### 1. Configuração do Backend (Python)
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-```bash
-# Instalar dependências Python
-pip install flask flask-cors
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-# Executar servidor da API
-python api_server.py
-```
+### Code Splitting
 
-O servidor estará disponível em `http://localhost:5000`
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### 2. Configuração do Frontend (React)
+### Analyzing the Bundle Size
 
-```bash
-# Navegar para o diretório do frontend
-cd scheduler-frontend
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-# Instalar dependências
-npm install
+### Making a Progressive Web App
 
-# Executar aplicação React
-npm start
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-A aplicação estará disponível em `http://localhost:3000`
+### Advanced Configuration
 
-## 🎯 Como Usar
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-1. **Entrada de Processos**: 
-   - Adicione processos com tempo de chegada, duração e prioridade
-   - Use os botões "+" e "-" para gerenciar processos
+### Deployment
 
-2. **Seleção de Algoritmo**:
-   - Escolha entre os 7 algoritmos disponíveis
-   - Configure parâmetros específicos (quantum, aging) quando necessário
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-3. **Execução da Simulação**:
-   - Clique em "Executar" para rodar a simulação
-   - Aguarde o processamento dos resultados
+### `npm run build` fails to minify
 
-4. **Visualização dos Resultados**:
-   - Veja métricas de performance na aba "Resultados"
-   - Analise o diagrama de tempo na aba "Diagrama"
-
-## 📊 Interpretação dos Resultados
-
-### Métricas Principais
-- **Tempo Médio de Vida (Turnaround Time)**: Tempo total desde chegada até conclusão
-- **Tempo Médio de Espera (Waiting Time)**: Tempo aguardando na fila de prontos
-- **Trocas de Contexto**: Número de mudanças de processo na CPU
-
-### Diagrama de Tempo
-- **##**: Processo em execução
-- **--**: Processo em espera
-- **✓**: Processo concluído
-- **Espaço em branco**: CPU ociosa ou processo não chegou
-
-## 🔧 Configuração Avançada
-
-### Arquivo config.txt
-```txt
-quantum: 2
-aging: 1
-```
-
-### Parâmetros dos Algoritmos
-- **Quantum**: Tamanho da fatia de tempo para Round Robin
-- **Aging**: Taxa de aumento de prioridade para algoritmos com envelhecimento
-
-## 📁 Estrutura do Projeto
-
-```
-projetoSO/
-├── SchedulerNoGUI.py          # Código Python original
-├── api_server.py              # Servidor Flask da API
-├── config.txt                 # Configurações do sistema
-├── scheduler-frontend/        # Frontend React
-│   ├── src/
-│   │   ├── components/        # Componentes React
-│   │   │   ├── ProcessInput.js
-│   │   │   ├── AlgorithmSelector.js
-│   │   │   ├── ResultsDisplay.js
-│   │   │   └── DiagramViewer.js
-│   │   ├── App.js             # Componente principal
-│   │   └── App.css            # Estilos CSS
-│   └── package.json           # Dependências Node.js
-└── README.md                  # Este arquivo
-```
-
-## 🐛 Solução de Problemas
-
-### Erro de Conexão com API
-- Verifique se o servidor Python está rodando na porta 5000
-- Confirme se todas as dependências Python estão instaladas
-
-### Problemas de CORS
-- O Flask-CORS está configurado para permitir requisições do localhost:3000
-- Se usar uma porta diferente, ajuste a configuração CORS no `api_server.py`
-
-### Erro de Dependências Node.js
-```bash
-# Limpar cache e reinstalar
-npm cache clean --force
-rm -rf node_modules package-lock.json
-npm install
-```
-
-## 📚 Referências
-
-- [Documentação React](https://react.dev/)
-- [Documentação Flask](https://flask.palletsprojects.com/)
-- [Algoritmos de Escalonamento - Tanenbaum](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/5_CPU_Scheduling.html)
-
-## 👥 Desenvolvido por
-
-**Paulo Guilherme de Almeida Silva**  
-**João Guilherme Lopes Batista de Oliveira**  
-**Gabriel Pinheiro Muniz Cunha**  
-**Gabriel da Silveira Miranda**
-
-*Projeto desenvolvido para a disciplina de Sistemas Operacionais da Universidade Federal do Ceará (UFC).*
-
-## 📄 Licença
-
-Este projeto é destinado exclusivamente para fins educacionais e acadêmicos.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
