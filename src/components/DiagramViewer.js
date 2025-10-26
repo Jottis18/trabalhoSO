@@ -3,7 +3,6 @@ import { Play, Pause, RotateCcw, ZoomIn, ZoomOut, Cpu } from 'lucide-react';
 
 const DiagramViewer = ({ diagramData, isLoading, inputProcesses, onAlgorithmChange, selectedAlgorithm, config }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
   const [zoom, setZoom] = useState(1);
 
   // Debug: log dos dados recebidos (comentado)
@@ -58,7 +57,6 @@ const DiagramViewer = ({ diagramData, isLoading, inputProcesses, onAlgorithmChan
 
   const resetDiagram = () => {
     setIsPlaying(false);
-    setCurrentTime(0);
   };
 
   const handleZoomIn = () => {
@@ -75,15 +73,6 @@ const DiagramViewer = ({ diagramData, isLoading, inputProcesses, onAlgorithmChan
     return process.timeline[time];
   };
 
-  const getStateColor = (state) => {
-    switch (state) {
-      case 'running': return '#4ade80'; // green
-      case 'waiting': return '#f59e0b'; // amber
-      case 'completed': return '#6b7280'; // gray
-      case 'idle': return '#e5e7eb'; // light gray
-      default: return '#e5e7eb';
-    }
-  };
 
   const getStateLabel = (state) => {
     switch (state) {

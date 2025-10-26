@@ -3,6 +3,7 @@ import ProcessInput from './components/ProcessInput';
 import AlgorithmSelector from './components/AlgorithmSelector';
 import ResultsDisplay from './components/ResultsDisplay';
 import DiagramViewer from './components/DiagramViewer';
+import ProcessSimulator from './utils/ProcessSimulator';
 import { Cpu, BarChart3, Clock, Settings } from 'lucide-react';
 import './App.css';
 
@@ -36,6 +37,7 @@ function App() {
     setDiagramData(null);
 
     try {
+      // Tenta usar o backend primeiro, se falhar usa simulador local
       const simulationData = {
         processes: processes,
         algorithm: algorithm,
@@ -46,38 +48,49 @@ function App() {
         ? '' // Usa a mesma URL da Vercel em produção
         : 'http://localhost:5001'; // Localhost em desenvolvimento
 
-      const response = await fetch(`${API_BASE_URL}/api/simulate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(simulationData)
-      });
-
-      if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.success) {
-        // console.log('App - Dados recebidos da API:', data);
-        // console.log('App - DiagramData:', data.diagramData);
-        
-        setResults({
-          avgTurnaroundTime: data.avgTurnaroundTime,
-          avgWaitingTime: data.avgWaitingTime,
-          contextSwitches: data.contextSwitches,
-          algorithm: data.algorithm
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/simulate`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(simulationData)
         });
-        setDiagramData(data.diagramData);
-        setSelectedAlgorithm(algorithm);
-      } else {
-        throw new Error(data.error || 'Erro desconhecido na simulação');
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            setResults({
+              avgTurnaroundTime: data.avgTurnaroundTime,
+              avgWaitingTime: data.avgWaitingTime,
+              contextSwitches: data.contextSwitches,
+              algorithm: data.algorithm
+            });
+            setDiagramData(data.diagramData);
+            setSelectedAlgorithm(algorithm);
+            return;
+          }
+        }
+      } catch (apiError) {
+        console.log('Backend não disponível, usando simulador local');
       }
+
+      // Fallback para simulador local
+      const simulator = new ProcessSimulator();
+      const result = simulator.simulate(processes, algorithm, config);
+      
+      setResults({
+        avgTurnaroundTime: result.avgTurnaroundTime,
+        avgWaitingTime: result.avgWaitingTime,
+        contextSwitches: result.contextSwitches,
+        algorithm: algorithm
+      });
+      setDiagramData(result.diagramData);
+      setSelectedAlgorithm(algorithm);
+
     } catch (error) {
       console.error('Erro na simulação:', error);
-      alert(`Erro ao executar simulação: ${error.message}. Verifique se o servidor Python está rodando.`);
+      alert(`Erro ao executar simulação: ${error.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -93,6 +106,7 @@ function App() {
     setDiagramData(null);
 
     try {
+      // Tenta usar o backend primeiro, se falhar usa simulador local
       const simulationData = {
         processes: processList,
         algorithm: selectedAlgorithm,
@@ -103,38 +117,49 @@ function App() {
         ? '' // Usa a mesma URL da Vercel em produção
         : 'http://localhost:5001'; // Localhost em desenvolvimento
 
-      const response = await fetch(`${API_BASE_URL}/api/simulate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(simulationData)
-      });
-
-      if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.success) {
-        // console.log('App - Dados recebidos da API:', data);
-        // console.log('App - DiagramData:', data.diagramData);
-        
-        setResults({
-          avgTurnaroundTime: data.avgTurnaroundTime,
-          avgWaitingTime: data.avgWaitingTime,
-          contextSwitches: data.contextSwitches,
-          algorithm: data.algorithm
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/simulate`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(simulationData)
         });
-        setDiagramData(data.diagramData);
-        setActiveTab('results');
-      } else {
-        throw new Error(data.error || 'Erro desconhecido na simulação');
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            setResults({
+              avgTurnaroundTime: data.avgTurnaroundTime,
+              avgWaitingTime: data.avgWaitingTime,
+              contextSwitches: data.contextSwitches,
+              algorithm: data.algorithm
+            });
+            setDiagramData(data.diagramData);
+            setActiveTab('results');
+            return;
+          }
+        }
+      } catch (apiError) {
+        console.log('Backend não disponível, usando simulador local');
       }
+
+      // Fallback para simulador local
+      const simulator = new ProcessSimulator();
+      const result = simulator.simulate(processList, selectedAlgorithm, config);
+      
+      setResults({
+        avgTurnaroundTime: result.avgTurnaroundTime,
+        avgWaitingTime: result.avgWaitingTime,
+        contextSwitches: result.contextSwitches,
+        algorithm: selectedAlgorithm
+      });
+      setDiagramData(result.diagramData);
+      setActiveTab('results');
+
     } catch (error) {
       console.error('Erro na simulação:', error);
-      alert(`Erro ao executar simulação: ${error.message}. Verifique se o servidor Python está rodando.`);
+      alert(`Erro ao executar simulação: ${error.message}`);
     } finally {
       setIsLoading(false);
     }
