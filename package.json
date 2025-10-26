@@ -1,0 +1,14 @@
+{
+  "name": "scheduler-simulator",
+  "version": "1.0.0",
+  "description": "Simulador de Escalonamento de Processos - UFC",
+  "scripts": {
+    "build": "cd scheduler-frontend && npm run build",
+    "start": "cd scheduler-frontend && npm start",
+    "install-frontend": "cd scheduler-frontend && npm install",
+    "install-backend": "pip install -r requirements.txt"
+  },
+  "keywords": ["scheduler", "operating-systems", "simulator", "react", "python"],
+  "author": "UFC - Sistemas Operacionais",
+  "license": "MIT"
+}
