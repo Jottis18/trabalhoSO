@@ -42,7 +42,11 @@ function App() {
         config: config
       };
 
-      const response = await fetch('http://localhost:5001/api/simulate', {
+      const API_BASE_URL = process.env.NODE_ENV === 'production' 
+        ? '' // Usa a mesma URL da Vercel em produção
+        : 'http://localhost:5001'; // Localhost em desenvolvimento
+
+      const response = await fetch(`${API_BASE_URL}/api/simulate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +99,11 @@ function App() {
         config: config
       };
 
-      const response = await fetch('http://localhost:5001/api/simulate', {
+      const API_BASE_URL = process.env.NODE_ENV === 'production' 
+        ? '' // Usa a mesma URL da Vercel em produção
+        : 'http://localhost:5001'; // Localhost em desenvolvimento
+
+      const response = await fetch(`${API_BASE_URL}/api/simulate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
