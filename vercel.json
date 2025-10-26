@@ -22,5 +22,8 @@
       "src": "/(.*)",
       "dest": "/scheduler-frontend/$1"
     }
-  ]
+  ],
+  "buildCommand": "cd scheduler-frontend && npm run build",
+  "outputDirectory": "scheduler-frontend/build",
+  "installCommand": "cd scheduler-frontend && npm install"
 }
